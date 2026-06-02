@@ -440,8 +440,7 @@ input[type=range]{padding:0;height:6px;cursor:pointer;accent-color:var(--accent)
 </style>
 </head>
 <body>
-  <H1> DOAN NGOC VU NGUYEN </H1>
-
+<H1>DOAN NGOC VU NGUYEN</H1>
 <div class="hamburger" id="hamburger" onclick="toggleSidebar()">☰</div>
 <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
@@ -491,14 +490,14 @@ input[type=range]{padding:0;height:6px;cursor:pointer;accent-color:var(--accent)
   <div class="sidebar-footer">
     <div class="xp-bar-wrap">
       <div class="xp-label">
-        <span>Level 7</span>
-        <span id="xpText">2,340 / 3,000 XP</span>
+        <span id="levelText">Level 1</span>
+        <span id="xpText">0 / 500 XP</span>
       </div>
-      <div class="xp-bar"><div class="xp-fill" id="xpFill" style="width:78%"></div></div>
+      <div class="xp-bar"><div class="xp-fill" id="xpFill" style="width:0%"></div></div>
     </div>
     <div class="streak-badge">
       <span class="streak-fire">🔥</span>
-      <span style="font-size:14px;font-weight:600;color:var(--text)">14 day streak</span>
+      <span id="streakText" style="font-size:14px;font-weight:600;color:var(--text)">0 day streak</span>
     </div>
   </div>
 </aside>
@@ -888,30 +887,30 @@ input[type=range]{padding:0;height:6px;cursor:pointer;accent-color:var(--accent)
           <div>
             <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px">
               <span style="color:var(--text2)">Overall Pronunciation</span>
-              <span style="font-weight:600">76%</span>
+              <span style="font-weight:600" id="coachOverallVal">—</span>
             </div>
-            <div class="progress-bar"><div class="progress-fill pf-accent" style="width:76%"></div></div>
+            <div class="progress-bar"><div class="progress-fill pf-accent" id="coachOverallBar" style="width:0%"></div></div>
           </div>
           <div>
             <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px">
               <span style="color:var(--text2)">Tone Accuracy</span>
-              <span style="font-weight:600">71%</span>
+              <span style="font-weight:600" id="coachToneVal">—</span>
             </div>
-            <div class="progress-bar"><div class="progress-fill pf-teal" style="width:71%"></div></div>
+            <div class="progress-bar"><div class="progress-fill pf-teal" id="coachToneBar" style="width:0%"></div></div>
           </div>
           <div>
             <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px">
               <span style="color:var(--text2)">Fluency</span>
-              <span style="font-weight:600">83%</span>
+              <span style="font-weight:600" id="coachFluencyVal">—</span>
             </div>
-            <div class="progress-bar"><div class="progress-fill pf-green" style="width:83%"></div></div>
+            <div class="progress-bar"><div class="progress-fill pf-green" id="coachFluencyBar" style="width:0%"></div></div>
           </div>
           <div>
             <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px">
               <span style="color:var(--text2)">Initials Accuracy</span>
-              <span style="font-weight:600">68%</span>
+              <span style="font-weight:600" id="coachSoundsVal">—</span>
             </div>
-            <div class="progress-bar"><div class="progress-fill pf-amber" style="width:68%"></div></div>
+            <div class="progress-bar"><div class="progress-fill pf-amber" id="coachSoundsBar" style="width:0%"></div></div>
           </div>
         </div>
       </div>
@@ -997,7 +996,7 @@ input[type=range]{padding:0;height:6px;cursor:pointer;accent-color:var(--accent)
       <div class="page-title">Progress Dashboard</div>
       <div class="page-sub">Your pronunciation journey at a glance</div>
     </div>
-    <select style="width:auto;font-size:13px;padding:0.4rem 0.75rem" onchange="updateDashboard(this.value)">
+    <select id="dashboardPeriodSelect" style="width:auto;font-size:13px;padding:0.4rem 0.75rem" onchange="updateDashboard(this.value)">
       <option value="week">This Week</option>
       <option value="month">This Month</option>
       <option value="all">All Time</option>
@@ -1006,24 +1005,24 @@ input[type=range]{padding:0;height:6px;cursor:pointer;accent-color:var(--accent)
 
   <div class="stat-grid">
     <div class="stat-card">
-      <div class="stat-val">14</div>
+      <div class="stat-val" id="dashboardStreakVal">0</div>
       <div class="stat-lbl">Day Streak 🔥</div>
-      <div class="stat-trend stat-up">↑ Personal best!</div>
+      <div class="stat-trend" id="dashboardStreakTrend">Start practicing today</div>
     </div>
     <div class="stat-card">
-      <div class="stat-val">8.3h</div>
+      <div class="stat-val" id="dashboardTimeVal">0m</div>
       <div class="stat-lbl">Practice Time</div>
-      <div class="stat-trend stat-up">↑ 2.1h this week</div>
+      <div class="stat-trend" id="dashboardTimeTrend">No sessions yet</div>
     </div>
     <div class="stat-card">
-      <div class="stat-val">76%</div>
+      <div class="stat-val" id="dashboardAvgVal">—</div>
       <div class="stat-lbl">Avg Accuracy</div>
-      <div class="stat-trend stat-up">↑ +4% from last week</div>
+      <div class="stat-trend" id="dashboardAvgTrend">Complete a session to see progress</div>
     </div>
     <div class="stat-card">
-      <div class="stat-val">2,340</div>
+      <div class="stat-val" id="dashboardXpVal">0</div>
       <div class="stat-lbl">Total XP</div>
-      <div class="stat-trend stat-up">↑ Level 7</div>
+      <div class="stat-trend" id="dashboardXpTrend">Level 1</div>
     </div>
   </div>
 
@@ -1064,7 +1063,7 @@ input[type=range]{padding:0;height:6px;cursor:pointer;accent-color:var(--accent)
       <div class="page-sub">Your pronunciation milestones</div>
     </div>
     <div style="display:flex;gap:0.5rem;align-items:center">
-      <span class="badge badge-amber">🏆 12 / 30 earned</span>
+      <span class="badge badge-amber" id="achievementsSummary">🏆 0 / 20 earned</span>
     </div>
   </div>
 
@@ -1100,15 +1099,44 @@ const state = {
   todayAttempts: 0,
   todayScores: [],
   todayXP: 0,
-  toneScore: {1:88,2:72,3:61,4:79},
+  toneScore: {1:0,2:0,3:0,4:0},
   currentToneDrill: {char:'马',pinyin:'mǎ',tone:3,meaning:'horse'},
   toneCorrect: 0,
   toneTotal: 0,
   listenMode: '',
   speechSynthesis: window.speechSynthesis,
   recognition: null,
-  xp: 2340,
+  recognitionConfidence: 0,
+  xp: 0,
+  streak: 0,
+  lastPracticeDate: '',
+  sessionHistory: [],
+  unlockedAchievements: {},
+  lessonProgress: {},
+  toneStats: {
+    correct: 0,
+    total: 0,
+    perTone: {
+      1: {correct:0,total:0},
+      2: {correct:0,total:0},
+      3: {correct:0,total:0},
+      4: {correct:0,total:0},
+    },
+  },
+  listenStats: {
+    completed: 0,
+    byMode: {},
+  },
+  dashboardPeriod: 'week',
+  charts: {
+    accuracy: null,
+    sessions: null,
+    sound: null,
+    tone: null,
+  },
 };
+
+const STORAGE_KEY = 'tonemaster-standalone-v1';
 
 const LESSONS = [
   {icon:'👋',title:'Greetings & Farewells',sub:'你好 nǐhǎo · 再见 zàijiàn',level:'Beginner',chars:12,text:'你好！再见！谢谢你。',pinyin:'Nǐ hǎo! Zài jiàn! Xièxiè nǐ.',trans:'Hello! Goodbye! Thank you.',progress:100,color:'rgba(124,106,247,0.12)'},
@@ -1137,26 +1165,26 @@ const RANDOM_SENTENCES = [
 ];
 
 const ACHIEVEMENTS = [
-  {emoji:'🎤',name:'First Recording',desc:'Record your pronunciation for the first time',unlocked:true},
-  {emoji:'🔥',name:'On Fire',desc:'7 day practice streak',unlocked:true},
-  {emoji:'💯',name:'Perfect Score',desc:'Score 100 on a pronunciation attempt',unlocked:false},
-  {emoji:'⭐',name:'Tone Master 1',desc:'Achieve 90% accuracy on Tone 1',unlocked:true},
-  {emoji:'🎯',name:'Sharp Shooter',desc:'Complete 50 pronunciation attempts',unlocked:true},
-  {emoji:'🏅',name:'Dedicated',desc:'Practice for 5 hours total',unlocked:true},
-  {emoji:'🌟',name:'Rising Star',desc:'Reach Level 5',unlocked:true},
-  {emoji:'🗣️',name:'Chatterbox',desc:'Practice 100 different sentences',unlocked:false},
-  {emoji:'🎵',name:'Tone Trainer',desc:'Complete the Tone Training module',unlocked:true},
-  {emoji:'📚',name:'Scholar',desc:'Complete 5 lessons',unlocked:false},
-  {emoji:'🏆',name:'Champion',desc:'Score 90+ on 10 consecutive attempts',unlocked:false},
-  {emoji:'⚡',name:'Speed Demon',desc:'Complete a session in under 2 minutes',unlocked:true},
-  {emoji:'🎓',name:'Graduate',desc:'Complete all beginner lessons',unlocked:false},
-  {emoji:'👂',name:'Good Ear',desc:'Identify 50 tones correctly',unlocked:true},
-  {emoji:'🌏',name:'Globetrotter',desc:'Learn 10 travel phrases',unlocked:false},
-  {emoji:'💪',name:'Persistent',desc:'Practice 30 days in a row',unlocked:false},
-  {emoji:'🌈',name:'All Tones',desc:'Practice all 5 tones in one session',unlocked:true},
-  {emoji:'🎁',name:'Gift of Tongues',desc:'Score 85+ on 20 different sentences',unlocked:false},
-  {emoji:'🦅',name:'Eagle Ear',desc:'97% tone identification accuracy',unlocked:false},
-  {emoji:'🧩',name:'Puzzle Master',desc:'Complete all listening exercises',unlocked:false},
+  {id:'first-recording',emoji:'🎤',name:'First Recording',desc:'Record your pronunciation for the first time'},
+  {id:'on-fire',emoji:'🔥',name:'On Fire',desc:'7 day practice streak'},
+  {id:'perfect-score',emoji:'💯',name:'Perfect Score',desc:'Score 100 on a pronunciation attempt'},
+  {id:'tone-master-1',emoji:'⭐',name:'Tone Master 1',desc:'Achieve 90% accuracy on Tone 1'},
+  {id:'sharp-shooter',emoji:'🎯',name:'Sharp Shooter',desc:'Complete 50 pronunciation attempts'},
+  {id:'dedicated',emoji:'🏅',name:'Dedicated',desc:'Practice for 5 hours total'},
+  {id:'rising-star',emoji:'🌟',name:'Rising Star',desc:'Reach Level 5'},
+  {id:'chatterbox',emoji:'🗣️',name:'Chatterbox',desc:'Practice 100 different sentences'},
+  {id:'tone-trainer',emoji:'🎵',name:'Tone Trainer',desc:'Complete the Tone Training module'},
+  {id:'scholar',emoji:'📚',name:'Scholar',desc:'Complete 5 lessons'},
+  {id:'champion',emoji:'🏆',name:'Champion',desc:'Score 90+ on 10 consecutive attempts'},
+  {id:'speed-demon',emoji:'⚡',name:'Speed Demon',desc:'Complete a session in under 2 minutes'},
+  {id:'graduate',emoji:'🎓',name:'Graduate',desc:'Complete all beginner lessons'},
+  {id:'good-ear',emoji:'👂',name:'Good Ear',desc:'Identify 50 tones correctly'},
+  {id:'globetrotter',emoji:'🌏',name:'Globetrotter',desc:'Learn 10 travel phrases'},
+  {id:'persistent',emoji:'💪',name:'Persistent',desc:'Practice 30 days in a row'},
+  {id:'all-tones',emoji:'🌈',name:'All Tones',desc:'Practice all 4 tones in training'},
+  {id:'gift-of-tongues',emoji:'🎁',name:'Gift of Tongues',desc:'Score 85+ on 20 different sentences'},
+  {id:'eagle-ear',emoji:'🦅',name:'Eagle Ear',desc:'97% tone identification accuracy'},
+  {id:'puzzle-master',emoji:'🧩',name:'Puzzle Master',desc:'Complete all listening exercise modes'},
 ];
 
 const TONE_PAIRS = [
@@ -1183,6 +1211,336 @@ const LISTEN_EXERCISES = {
   ]
 };
 
+function sanitizeChineseText(text='') {
+  return text.replace(/[，。？！、；：,.!?\s""''（）【】《》…—~]/g, '');
+}
+
+function getDateKey(date = new Date()) {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate()).toISOString().slice(0, 10);
+}
+
+function getLevelInfo(xp) {
+  const safeXp = Math.max(0, Number(xp) || 0);
+  const level = Math.floor(safeXp / 500) + 1;
+  const currentLevelXP = safeXp % 500;
+  return {
+    level,
+    currentLevelXP,
+    nextLevelXP: level * 500,
+    percent: Math.round((currentLevelXP / 500) * 100),
+  };
+}
+
+function average(values) {
+  return values.length ? values.reduce((sum, value) => sum + value, 0) / values.length : 0;
+}
+
+function createDefaultData() {
+  return {
+    xp: 0,
+    streak: 0,
+    lastPracticeDate: '',
+    sessions: [],
+    achievements: {},
+    lessonProgress: {},
+    toneStats: {
+      correct: 0,
+      total: 0,
+      perTone: {
+        1: {correct:0,total:0},
+        2: {correct:0,total:0},
+        3: {correct:0,total:0},
+        4: {correct:0,total:0},
+      },
+    },
+    listenStats: {
+      completed: 0,
+      byMode: {},
+    },
+    dashboardPeriod: 'week',
+  };
+}
+
+function loadStoredData() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return createDefaultData();
+    const parsed = JSON.parse(raw);
+    const defaults = createDefaultData();
+    return {
+      ...defaults,
+      ...parsed,
+      sessions: Array.isArray(parsed?.sessions) ? parsed.sessions : defaults.sessions,
+      achievements: parsed?.achievements || defaults.achievements,
+      lessonProgress: parsed?.lessonProgress || defaults.lessonProgress,
+      toneStats: {
+        ...defaults.toneStats,
+        ...(parsed?.toneStats || {}),
+        perTone: {
+          ...defaults.toneStats.perTone,
+          ...(parsed?.toneStats?.perTone || {}),
+        },
+      },
+      listenStats: {
+        ...defaults.listenStats,
+        ...(parsed?.listenStats || {}),
+        byMode: parsed?.listenStats?.byMode || defaults.listenStats.byMode,
+      },
+    };
+  } catch(err) {
+    console.error('Failed to load saved ToneMaster data.', err);
+    return createDefaultData();
+  }
+}
+
+function persistState() {
+  const data = {
+    xp: state.xp,
+    streak: state.streak,
+    lastPracticeDate: state.lastPracticeDate,
+    sessions: state.sessionHistory,
+    achievements: state.unlockedAchievements,
+    lessonProgress: state.lessonProgress,
+    toneStats: state.toneStats,
+    listenStats: state.listenStats,
+    dashboardPeriod: state.dashboardPeriod,
+  };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+function getSessionsForPeriod(period = state.dashboardPeriod) {
+  const sessions = [...state.sessionHistory].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+  if(period === 'all') return sessions;
+  const days = period === 'month' ? 30 : 7;
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - (days - 1));
+  cutoff.setHours(0, 0, 0, 0);
+  return sessions.filter(session => new Date(session.createdAt) >= cutoff);
+}
+
+function buildToneScores() {
+  [1,2,3,4].forEach(tone => {
+    const stats = state.toneStats.perTone[tone] || {correct:0,total:0};
+    state.toneScore[tone] = stats.total ? Math.round((stats.correct / stats.total) * 100) : 0;
+  });
+}
+
+function syncTodayStats() {
+  const todayKey = getDateKey();
+  const todaySessions = state.sessionHistory.filter(session => session.dateKey === todayKey);
+  state.todayAttempts = todaySessions.length;
+  state.todayScores = todaySessions.map(session => session.overall);
+  state.todayXP = todaySessions.reduce((sum, session) => sum + (session.xpEarned || 0), 0);
+
+  document.getElementById('todayAttempts').textContent = state.todayAttempts;
+  document.getElementById('todayAvg').textContent = todaySessions.length ? `${Math.round(average(state.todayScores))}%` : '—';
+  document.getElementById('todayBest').textContent = todaySessions.length ? `${Math.max(...state.todayScores)}%` : '—';
+  document.getElementById('todayXP').textContent = state.todayXP;
+}
+
+function updateSidebarProgress() {
+  const levelInfo = getLevelInfo(state.xp);
+  document.getElementById('levelText').textContent = `Level ${levelInfo.level}`;
+  document.getElementById('xpText').textContent = `${state.xp} / ${levelInfo.nextLevelXP} XP`;
+  document.getElementById('xpFill').style.width = `${levelInfo.percent}%`;
+  document.getElementById('streakText').textContent = `${state.streak} day streak`;
+}
+
+function updateCoachProfile() {
+  const sessions = state.sessionHistory.slice(-10);
+  const overall = sessions.length ? Math.round(average(sessions.map(session => session.overall))) : 0;
+  const tone = sessions.length ? Math.round(average(sessions.map(session => session.toneAccuracy))) : 0;
+  const fluency = sessions.length ? Math.round(average(sessions.map(session => session.fluency))) : 0;
+  const sounds = sessions.length ? Math.round(average(sessions.map(session => session.pronunciation))) : 0;
+  const profile = [
+    ['coachOverallVal','coachOverallBar',overall],
+    ['coachToneVal','coachToneBar',tone],
+    ['coachFluencyVal','coachFluencyBar',fluency],
+    ['coachSoundsVal','coachSoundsBar',sounds],
+  ];
+  profile.forEach(([valueId, barId, value]) => {
+    document.getElementById(valueId).textContent = sessions.length ? `${value}%` : '—';
+    document.getElementById(barId).style.width = `${value}%`;
+  });
+}
+
+function updateLessonProgressForText(text, score) {
+  const lessonIndex = LESSONS.findIndex(lesson => lesson.text === text);
+  if(lessonIndex === -1) return;
+  const previous = state.lessonProgress[lessonIndex] || {attempts:0,bestScore:0,completed:false};
+  state.lessonProgress[lessonIndex] = {
+    attempts: previous.attempts + 1,
+    bestScore: Math.max(previous.bestScore, score),
+    completed: previous.completed || score >= 80,
+  };
+}
+
+function updateStreak(dateKey) {
+  if(!state.lastPracticeDate) {
+    state.streak = 1;
+    state.lastPracticeDate = dateKey;
+    return;
+  }
+  if(state.lastPracticeDate === dateKey) return;
+
+  const previous = new Date(`${state.lastPracticeDate}T00:00:00`);
+  const current = new Date(`${dateKey}T00:00:00`);
+  const diffDays = Math.round((current - previous) / 86400000);
+
+  if(diffDays === 1) state.streak += 1;
+  else if(diffDays > 1) state.streak = 1;
+
+  state.lastPracticeDate = dateKey;
+}
+
+function refreshDashboardSummary(period = state.dashboardPeriod) {
+  const sessions = getSessionsForPeriod(period);
+  const totalSeconds = Math.round(sessions.reduce((sum, session) => sum + (session.durationSeconds || 0), 0));
+  const totalMinutes = totalSeconds >= 3600 ? `${(totalSeconds / 3600).toFixed(1)}h` : `${Math.max(0, Math.round(totalSeconds / 60))}m`;
+  const avgScore = sessions.length ? `${Math.round(average(sessions.map(session => session.overall)))}%` : '—';
+  const levelInfo = getLevelInfo(state.xp);
+
+  document.getElementById('dashboardStreakVal').textContent = state.streak;
+  document.getElementById('dashboardStreakTrend').textContent = state.streak >= 7 ? 'Consistent practice streak' : 'Keep the streak alive';
+  document.getElementById('dashboardTimeVal').textContent = totalMinutes;
+  document.getElementById('dashboardTimeTrend').textContent = sessions.length ? `${sessions.length} sessions in this period` : 'No sessions yet';
+  document.getElementById('dashboardAvgVal').textContent = avgScore;
+  document.getElementById('dashboardAvgTrend').textContent = sessions.length ? 'Based on saved practice history' : 'Complete a session to see progress';
+  document.getElementById('dashboardXpVal').textContent = state.xp;
+  document.getElementById('dashboardXpTrend').textContent = `Level ${levelInfo.level}`;
+}
+
+function updateAchievementState() {
+  const sessions = state.sessionHistory;
+  const uniqueTexts = new Set(sessions.map(session => session.target));
+  const highScoreTexts = new Set(sessions.filter(session => session.overall >= 85).map(session => session.target));
+  const perfectSession = sessions.some(session => session.overall === 100);
+  const consecutiveNinety = (() => {
+    let best = 0;
+    let current = 0;
+    sessions.forEach(session => {
+      if(session.overall >= 90) {
+        current += 1;
+        best = Math.max(best, current);
+      } else {
+        current = 0;
+      }
+    });
+    return best;
+  })();
+  const totalPracticeSeconds = sessions.reduce((sum, session) => sum + (session.durationSeconds || 0), 0);
+  const beginnerLessons = LESSONS.map((lesson, index) => ({lesson, index})).filter(item => item.lesson.level === 'Beginner');
+  const completedLessons = Object.values(state.lessonProgress).filter(progress => progress.completed).length;
+  const completedBeginnerLessons = beginnerLessons.filter(item => state.lessonProgress[item.index]?.completed).length;
+  const toneAccuracy = state.toneStats.total ? Math.round((state.toneStats.correct / state.toneStats.total) * 100) : 0;
+  const listenedModes = Object.keys(state.listenStats.byMode || {}).filter(mode => state.listenStats.byMode[mode] > 0);
+  const levelInfo = getLevelInfo(state.xp);
+
+  const derived = {
+    'first-recording': sessions.length >= 1,
+    'on-fire': state.streak >= 7,
+    'perfect-score': perfectSession,
+    'tone-master-1': (state.toneStats.perTone[1]?.total || 0) >= 5 && state.toneScore[1] >= 90,
+    'sharp-shooter': sessions.length >= 50,
+    'dedicated': totalPracticeSeconds >= 18000,
+    'rising-star': levelInfo.level >= 5,
+    'chatterbox': uniqueTexts.size >= 100,
+    'tone-trainer': state.toneStats.total >= 20,
+    'scholar': completedLessons >= 5,
+    'champion': consecutiveNinety >= 10,
+    'speed-demon': sessions.some(session => (session.durationSeconds || 0) > 0 && session.durationSeconds < 120),
+    'graduate': beginnerLessons.length > 0 && completedBeginnerLessons === beginnerLessons.length,
+    'good-ear': state.toneStats.correct >= 50,
+    'globetrotter': uniqueTexts.size >= 10,
+    'persistent': state.streak >= 30,
+    'all-tones': [1,2,3,4].every(tone => (state.toneStats.perTone[tone]?.total || 0) > 0),
+    'gift-of-tongues': highScoreTexts.size >= 20,
+    'eagle-ear': state.toneStats.total >= 20 && toneAccuracy >= 97,
+    'puzzle-master': listenedModes.length === 4,
+  };
+
+  ACHIEVEMENTS.forEach(achievement => {
+    state.unlockedAchievements[achievement.id] = Boolean(state.unlockedAchievements[achievement.id] || derived[achievement.id]);
+  });
+}
+
+function hydrateStateFromStorage() {
+  const saved = loadStoredData();
+  state.xp = saved.xp;
+  state.streak = saved.streak;
+  state.lastPracticeDate = saved.lastPracticeDate;
+  state.sessionHistory = saved.sessions;
+  state.unlockedAchievements = saved.achievements;
+  state.lessonProgress = saved.lessonProgress;
+  state.toneStats = saved.toneStats;
+  state.listenStats = saved.listenStats;
+  state.dashboardPeriod = saved.dashboardPeriod || 'week';
+
+  if(state.lastPracticeDate) {
+    const last = new Date(`${state.lastPracticeDate}T00:00:00`);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const diffDays = Math.round((today - last) / 86400000);
+    if(diffDays > 1) state.streak = 0;
+  }
+
+  buildToneScores();
+  updateAchievementState();
+  updateSidebarProgress();
+  syncTodayStats();
+  updateCoachProfile();
+}
+
+function savePracticeSession(score, detected, xpEarned) {
+  const date = new Date();
+  const dateKey = getDateKey(date);
+  updateStreak(dateKey);
+  updateLessonProgressForText(state.currentText, score.overall);
+
+  state.sessionHistory.push({
+    createdAt: date.toISOString(),
+    dateKey,
+    target: state.currentText,
+    detected,
+    overall: score.overall,
+    toneAccuracy: score.toneAccuracy,
+    pronunciation: score.pronunciation,
+    fluency: score.fluency,
+    confidence: score.confidence,
+    chars: score.chars,
+    durationSeconds: state.recordingSeconds,
+    xpEarned,
+  });
+
+  updateAchievementState();
+  syncTodayStats();
+  updateSidebarProgress();
+  updateCoachProfile();
+  updateWeakAreas();
+  persistState();
+}
+
+function saveToneTrainingResult(correctTone, wasCorrect) {
+  state.toneTotal += 1;
+  state.toneStats.total += 1;
+  state.toneStats.perTone[correctTone].total += 1;
+  if(wasCorrect) {
+    state.toneCorrect += 1;
+    state.toneStats.correct += 1;
+    state.toneStats.perTone[correctTone].correct += 1;
+  }
+  buildToneScores();
+  updateAchievementState();
+  persistState();
+}
+
+function saveListeningCompletion(mode) {
+  state.listenStats.completed += 1;
+  state.listenStats.byMode[mode] = (state.listenStats.byMode[mode] || 0) + 1;
+  updateAchievementState();
+  persistState();
+}
+
 // ============================================================
 // NAVIGATION
 // ============================================================
@@ -1198,7 +1556,10 @@ function showPage(id) {
   if(id === 'tone') setTimeout(initToneChart, 100);
   if(id === 'lessons') renderLessons();
   if(id === 'achievements') renderAchievements();
-  if(id === 'coach') {};
+  if(id === 'coach') {
+    updateCoachProfile();
+    updateWeakAreas();
+  }
   closeSidebar();
 }
 
@@ -1290,7 +1651,7 @@ async function startRecording() {
     drawWaveform();
 
     // Start speech recognition
-    startSpeechRecognition(stream);
+    startSpeechRecognition();
   } catch(err) {
     alert('Microphone access required. Please allow microphone access and try again.');
     console.error(err);
@@ -1352,7 +1713,7 @@ function drawWaveform() {
 
 let detectedSpeech = '';
 
-function startSpeechRecognition(stream) {
+function startSpeechRecognition() {
   const SRClass = window.SpeechRecognition || window.webkitSpeechRecognition;
   if(!SRClass) return;
   state.recognition = new SRClass();
@@ -1361,12 +1722,27 @@ function startSpeechRecognition(stream) {
   state.recognition.interimResults = true;
   state.recognition.onresult = e => {
     let final = '';
+    const confidences = [];
     for(let i=0; i<e.results.length; i++) {
-      if(e.results[i].isFinal) final += e.results[i][0].transcript;
+      if(e.results[i].isFinal) {
+        final += e.results[i][0].transcript;
+        if(typeof e.results[i][0].confidence === 'number' && e.results[i][0].confidence > 0) {
+          confidences.push(e.results[i][0].confidence);
+        }
+      }
     }
-    detectedSpeech = final || detectedSpeech;
+    if(final.trim()) detectedSpeech = final.replace(/\s+/g, '');
+    if(confidences.length) state.recognitionConfidence = average(confidences);
   };
   try { state.recognition.start(); } catch(e) {}
+}
+
+function clampScore(value) {
+  return Math.max(0, Math.min(100, Math.round(value)));
+}
+
+function getExpectedDurationSeconds(charCount) {
+  return Math.max(2, Math.min(14, charCount * 1.2));
 }
 
 // ============================================================
@@ -1374,53 +1750,67 @@ function startSpeechRecognition(stream) {
 // ============================================================
 function analyzeRecording() {
   const target = state.currentText;
-  const detected = detectedSpeech || generateSimulatedDetection(target);
+  const detected = sanitizeChineseText(detectedSpeech);
   const score = scorePronunciation(target, detected);
+  const xpEarned = Math.max(3, Math.round(score.overall / 5));
 
-  showScore(score, target, detected);
+  showScore(score, target, detected || '—');
+  addXP(xpEarned);
+  savePracticeSession(score, detected, xpEarned);
   updateSessionStats(score.overall);
-  addXP(Math.floor(score.overall / 5));
+  renderLessons();
+  renderAchievements();
+  if(state.charts.tone) initToneChart();
+  if(state.charts.accuracy || state.charts.sessions || state.charts.sound) updateDashboard(state.dashboardPeriod);
   detectedSpeech = '';
-}
-
-function generateSimulatedDetection(text) {
-  // Simulate minor errors for demo
-  const chars = text.split('');
-  const errorMap = {'好':'号','很':'恨','高':'告','兴':'性'};
-  return chars.map(c => Math.random() < 0.15 ? (errorMap[c]||c) : c).join('');
+  state.recognitionConfidence = 0;
 }
 
 function scorePronunciation(target, detected) {
-  const tgt = target.replace(/[，。？！、；：""''（）【】《》…—~]/g, '');
-  const det = detected.replace(/[，。？！、；：""''（）【】《》…—~]/g, '');
+  const tgt = sanitizeChineseText(target);
+  const det = sanitizeChineseText(detected);
+  const targetChars = tgt.split('');
+  const detectedChars = det.split('');
+  const targetLen = targetChars.length;
+  const expectedDuration = getExpectedDurationSeconds(targetLen || 1);
+  const duration = Math.max(0, state.recordingSeconds || 0);
+  const coverage = targetLen ? Math.min(detectedChars.length / targetLen, 1) : 0;
 
   let matchCount = 0;
-  const minLen = Math.min(tgt.length, det.length);
-  for(let i=0; i<minLen; i++) {
-    if(tgt[i] === det[i]) matchCount++;
-  }
+  const chars = targetChars.map((char, index) => {
+    const detectedChar = detectedChars[index] || '';
+    const exact = detectedChar === char;
+    if(exact) matchCount += 1;
+    const misplaced = !exact && detectedChars.includes(char);
+    const score = exact ? 100 : misplaced ? 65 : detectedChar ? 30 : 0;
+    return {
+      char,
+      pinyin: getPinyinForChar(char),
+      score,
+      correct: exact,
+    };
+  });
 
-  const charAccuracy = minLen > 0 ? matchCount/tgt.length : 0;
-  const toneAcc = 0.55 + Math.random()*0.35;
-  const fluency = 0.60 + Math.random()*0.35;
-  const confidence = 0.50 + Math.random()*0.45;
-  const overall = Math.round((charAccuracy*0.4 + toneAcc*0.3 + fluency*0.2 + confidence*0.1) * 100);
-
-  const chars = tgt.split('').map((c,i) => ({
-    char: c,
-    pinyin: getPinyinForChar(c),
-    score: det[i]===c ? (80+Math.floor(Math.random()*20)) : (40+Math.floor(Math.random()*40)),
-    correct: det[i]===c,
-  }));
+  const matchRatio = targetLen ? matchCount / targetLen : 0;
+  const pronunciation = clampScore(targetLen ? average(chars.map(char => char.score)) : 0);
+  const confidence = clampScore(
+    state.recognitionConfidence > 0
+      ? state.recognitionConfidence * 100
+      : (matchRatio * 55 + coverage * 45) * 100
+  );
+  const durationGap = expectedDuration ? Math.abs(duration - expectedDuration) / expectedDuration : 1;
+  const fluency = clampScore((100 - durationGap * 70) * (0.55 + coverage * 0.45));
+  const toneAccuracy = clampScore((matchRatio * 0.65 + coverage * 0.15 + (confidence / 100) * 0.20) * 100);
+  const overall = clampScore(pronunciation * 0.5 + toneAccuracy * 0.2 + fluency * 0.2 + confidence * 0.1);
 
   return {
-    overall: Math.min(100, overall),
-    toneAccuracy: Math.round(toneAcc*100),
-    pronunciation: Math.round(charAccuracy*100),
-    fluency: Math.round(fluency*100),
-    confidence: Math.round(confidence*100),
+    overall,
+    toneAccuracy,
+    pronunciation,
+    fluency,
+    confidence,
     chars,
-    detected,
+    detected: det,
   };
 }
 
@@ -1517,26 +1907,14 @@ function playCharacter(char) {
   window.speechSynthesis.speak(utt);
 }
 
-function updateSessionStats(score) {
-  state.todayAttempts++;
-  state.todayScores.push(score);
-  const avg = Math.round(state.todayScores.reduce((a,b)=>a+b,0)/state.todayScores.length);
-  const best = Math.max(...state.todayScores);
-  document.getElementById('todayAttempts').textContent = state.todayAttempts;
-  document.getElementById('todayAvg').textContent = avg+'%';
-  document.getElementById('todayBest').textContent = best+'%';
-  document.getElementById('todayXP').textContent = state.todayXP;
+function updateSessionStats() {
+  syncTodayStats();
 }
 
 function addXP(xp) {
-  state.todayXP += xp;
   state.xp += xp;
-  const level = Math.floor(state.xp / 500) + 1;
-  const currentLevelXP = state.xp % 500;
-  const pct = (currentLevelXP/500*100).toFixed(0);
-  document.getElementById('xpFill').style.width = pct+'%';
-  document.getElementById('xpText').textContent = `${state.xp} / ${(Math.floor(state.xp/500)+1)*500} XP`;
-  document.getElementById('todayXP').textContent = state.todayXP;
+  updateSidebarProgress();
+  refreshDashboardSummary(state.dashboardPeriod);
 }
 
 // ============================================================
@@ -1645,29 +2023,39 @@ function playToneDrill() {
 }
 
 function checkTone(selected) {
-  state.toneTotal++;
   const correct = state.currentToneDrill.tone;
+  const wasCorrect = selected === correct;
   const res = document.getElementById('toneResult');
-  if(selected === correct) {
-    state.toneCorrect++;
+  if(wasCorrect) {
     res.innerHTML = `<span style="color:var(--green);font-weight:700">✓ Correct! Tone ${correct}: ${state.currentToneDrill.pinyin} (${state.currentToneDrill.meaning})</span>`;
     addXP(5);
   } else {
     res.innerHTML = `<span style="color:var(--rose);font-weight:700">✗ Not quite. It was Tone ${correct} — ${state.currentToneDrill.pinyin} means "${state.currentToneDrill.meaning}"</span>`;
   }
+  saveToneTrainingResult(correct, wasCorrect);
+  renderAchievements();
+  initToneChart();
   setTimeout(() => nextToneDrill(), 2000);
 }
 
 function initToneChart() {
   const ctx = document.getElementById('toneChart');
-  if(!ctx || ctx._chart) return;
-  ctx._chart = new Chart(ctx, {
+  if(!ctx) return;
+  const chartData = [1,2,3,4].map(tone => state.toneScore[tone] || 0);
+
+  if(state.charts.tone) {
+    state.charts.tone.data.datasets[0].data = chartData;
+    state.charts.tone.update();
+    return;
+  }
+
+  state.charts.tone = new Chart(ctx, {
     type: 'bar',
     data: {
       labels: ['Tone 1', 'Tone 2', 'Tone 3', 'Tone 4'],
       datasets: [{
         label: 'Accuracy %',
-        data: [88, 72, 61, 79],
+        data: chartData,
         backgroundColor: ['#f43f5e44','#f59e0b44','#22c55e44','#7c6af744'],
         borderColor: ['#f43f5e','#f59e0b','#22c55e','#7c6af7'],
         borderWidth: 2,
@@ -1793,6 +2181,8 @@ function submitListenAnswer() {
     if(input === correct) {
       fb.innerHTML = '<span style="color:var(--green);font-weight:600">✓ Perfect! Well done.</span>';
       addXP(10);
+      saveListeningCompletion('dictation');
+      renderAchievements();
     } else {
       fb.innerHTML = `<span style="color:var(--rose)">Answer: <strong>${correct}</strong> (${currentListenExercise.pinyin})</span>`;
     }
@@ -1803,7 +2193,16 @@ function submitListenAnswer() {
       const sel = document.getElementById('toneGuess_'+i);
       if(sel && parseInt(sel.value) === currentListenExercise.tones[i]) correct++;
     });
-    alert(`${correct}/${chars.length} tones correct!`);
+    const accuracy = chars.length ? Math.round((correct / chars.length) * 100) : 0;
+    saveListeningCompletion('tone-id');
+    if(accuracy >= 80) addXP(8);
+    renderAchievements();
+    alert(`${correct}/${chars.length} tones correct (${accuracy}%).`);
+  } else if(state.listenMode === 'repeat' || state.listenMode === 'shadow') {
+    saveListeningCompletion(state.listenMode);
+    addXP(4);
+    renderAchievements();
+    alert('Exercise counted. Use the practice recorder to score your spoken answer.');
   }
 }
 
@@ -1816,26 +2215,30 @@ function setListenDifficulty() {
 // ============================================================
 function renderLessons() {
   const list = document.getElementById('lessonsList');
-  list.innerHTML = LESSONS.map((l, i) => `
-    <div class="lesson-card" onclick="loadLessonPractice(${i})">
-      <div class="lesson-icon" style="background:${l.color};font-size:24px">${l.icon}</div>
-      <div class="lesson-info">
-        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:4px">
-          <div class="lesson-title">${l.title}</div>
-          <span class="badge ${l.level==='Beginner'?'badge-teal':l.level==='Intermediate'?'badge-amber':'badge-rose'}" style="font-size:10px">${l.level}</span>
-        </div>
-        <div class="lesson-meta">${l.sub} · ${l.chars} characters</div>
-        <div class="lesson-progress">
-          <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text2);margin-bottom:2px">
-            <span>${l.progress}% complete</span>
-            ${l.progress===100?'<span style="color:var(--green)">✓ Done</span>':''}
+  list.innerHTML = LESSONS.map((l, i) => {
+    const progress = state.lessonProgress[i];
+    const percent = progress ? (progress.completed ? 100 : Math.min(95, progress.bestScore || 0)) : 0;
+    return `
+      <div class="lesson-card" onclick="loadLessonPractice(${i})">
+        <div class="lesson-icon" style="background:${l.color};font-size:24px">${l.icon}</div>
+        <div class="lesson-info">
+          <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:4px">
+            <div class="lesson-title">${l.title}</div>
+            <span class="badge ${l.level==='Beginner'?'badge-teal':l.level==='Intermediate'?'badge-amber':'badge-rose'}" style="font-size:10px">${l.level}</span>
           </div>
-          <div class="progress-bar"><div class="progress-fill pf-accent" style="width:${l.progress}%"></div></div>
+          <div class="lesson-meta">${l.sub} · ${l.chars} characters</div>
+          <div class="lesson-progress">
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text2);margin-bottom:2px">
+              <span>${percent}% complete</span>
+              ${progress?.completed ? '<span style="color:var(--green)">✓ Done</span>' : ''}
+            </div>
+            <div class="progress-bar"><div class="progress-fill pf-accent" style="width:${percent}%"></div></div>
+          </div>
         </div>
+        <div style="color:var(--text2);font-size:20px">›</div>
       </div>
-      <div style="color:var(--text2);font-size:20px">›</div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 function loadLessonPractice(idx) {
@@ -1851,53 +2254,95 @@ function loadLessonPractice(idx) {
 // ============================================================
 // AI COACH
 // ============================================================
+function updateWeakAreas() {
+  const weakAreas = document.getElementById('weakAreas');
+  if(!weakAreas) return;
+  const sessions = state.sessionHistory.slice(-10);
+  const badges = [];
+  if(!sessions.length) {
+    badges.push({label:'No practice data yet', cls:'badge-accent'});
+  } else {
+    const overall = Math.round(average(sessions.map(session => session.overall)));
+    const tone = Math.round(average(sessions.map(session => session.toneAccuracy)));
+    const fluency = Math.round(average(sessions.map(session => session.fluency)));
+    const pronunciation = Math.round(average(sessions.map(session => session.pronunciation)));
+    if(tone < 80) badges.push({label:`Tone control ${tone}%`, cls:'badge-amber'});
+    if(fluency < 80) badges.push({label:`Fluency ${fluency}%`, cls:'badge-accent'});
+    if(pronunciation < 80) badges.push({label:`Character accuracy ${pronunciation}%`, cls:'badge-rose'});
+    if(overall >= 85) badges.push({label:'Strong recent progress', cls:'badge-green'});
+
+    const weakChars = {};
+    sessions.forEach(session => {
+      (session.chars || []).forEach(char => {
+        if(char.score < 70) weakChars[char.char] = (weakChars[char.char] || 0) + 1;
+      });
+    });
+    Object.entries(weakChars)
+      .sort((a,b) => b[1] - a[1])
+      .slice(0, 2)
+      .forEach(([char]) => badges.push({label:`Review ${char}`, cls:'badge-rose'}));
+  }
+
+  weakAreas.innerHTML = badges.slice(0, 5).map(badge => `<span class="badge ${badge.cls}">${badge.label}</span>`).join('');
+}
+
 async function generateCoachFeedback() {
   const btn = document.getElementById('coachBtn');
   const bubbles = document.getElementById('coachBubbles');
   btn.disabled = true;
   btn.textContent = '⏳ Analyzing...';
-  bubbles.innerHTML = '<div style="color:var(--text2);padding:1rem;text-align:center">Generating personalized feedback...</div>';
+  updateCoachProfile();
+  updateWeakAreas();
 
-  // Use Anthropic API
-  try {
-    const weakAreas = Array.from(document.querySelectorAll('#weakAreas .badge')).map(b => b.textContent).join(', ');
-    const prompt = `You are an expert Mandarin Chinese pronunciation coach. A student has the following pronunciation profile:
-- Overall accuracy: 76%
-- Tone accuracy: 71%  
-- Fluency: 83%
-- Initials accuracy: 68%
-- Weak areas: ${weakAreas}
-- Practice streak: 14 days
-- Level: 7
-
-Provide 3 specific, actionable coaching tips in 2-3 sentences each. Focus on their weak areas. Be encouraging but direct. Format as 3 separate paragraphs with no bullet points or headers.`;
-
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        messages:[{role:'user',content:prompt}]
-      })
-    });
-
-    const data = await response.json();
-    const text = data.content?.[0]?.text || '';
-    const paragraphs = text.split(/\n\n+/).filter(p => p.trim());
-
-    bubbles.innerHTML = paragraphs.map(p => `
-      <div class="coach-bubble" style="margin-bottom:1.5rem">
-        <div class="coach-text">${p.trim()}</div>
-      </div>
-    `).join('');
-  } catch(e) {
+  const sessions = state.sessionHistory.slice(-10);
+  if(!sessions.length) {
     bubbles.innerHTML = `
-      <div class="coach-bubble"><div class="coach-text">Your Tone 3 needs the most attention. Remember: it should dip low before rising. Practice with exaggeration until the movement feels natural in conversation.</div></div>
-      <div class="coach-bubble" style="margin-top:1.5rem"><div class="coach-text">The zh/z distinction is crucial. zh requires you to curl your tongue back (retroflex), while z keeps the tongue forward against the teeth. Practice pairs like: zhī/zī, zhā/zā daily.</div></div>
-      <div class="coach-bubble" style="margin-top:1.5rem"><div class="coach-text">Your fluency score is improving — great work! Now focus on smooth tonal transitions between syllables. The natural flow of Chinese requires you to connect the pitch changes seamlessly.</div></div>
+      <div class="coach-bubble"><div class="coach-text">Start with 3 to 5 short recordings so the coach has enough real data to spot patterns in your pronunciation.</div></div>
+      <div class="coach-bubble" style="margin-top:1.5rem"><div class="coach-text">Use the same sentence two or three times in a row. That makes it easier to hear whether your clarity and pacing are improving.</div></div>
+      <div class="coach-bubble" style="margin-top:1.5rem"><div class="coach-text">After each attempt, compare the detected text with the target text. Repeated mismatches usually point to the exact sounds you should isolate in practice.</div></div>
     `;
+    btn.disabled = false;
+    btn.textContent = '✨ Generate AI Analysis';
+    return;
   }
+
+  const overall = Math.round(average(sessions.map(session => session.overall)));
+  const tone = Math.round(average(sessions.map(session => session.toneAccuracy)));
+  const fluency = Math.round(average(sessions.map(session => session.fluency)));
+  const pronunciation = Math.round(average(sessions.map(session => session.pronunciation)));
+  const confidence = Math.round(average(sessions.map(session => session.confidence)));
+  const recentTrend = sessions.length >= 2 ? sessions[sessions.length - 1].overall - sessions[0].overall : 0;
+  const weakChars = {};
+  sessions.forEach(session => {
+    (session.chars || []).forEach(char => {
+      if(char.score < 70) weakChars[char.char] = (weakChars[char.char] || 0) + 1;
+    });
+  });
+  const focusChars = Object.entries(weakChars).sort((a,b) => b[1] - a[1]).slice(0, 3).map(([char]) => char);
+
+  const tips = [
+    tone < 80
+      ? `Your tone control is averaging ${tone}%, so keep drilling short pairs and exaggerate the pitch movement before you speed up. Accuracy matters more than speed here, especially on syllables that the recognizer keeps turning into different characters.`
+      : `Your tone control is holding up well at ${tone}%. Keep that advantage by practicing full phrases instead of isolated words so the pitch transitions stay clear between syllables.`,
+    fluency < 80
+      ? `Your pacing is the main bottleneck right now. Record the same sentence again while aiming for a steady rhythm close to the model audio, because long pauses and rushed bursts are lowering your fluency score.`
+      : `Your pacing is solid at ${fluency}%, so the next gain will come from cleaner consonants and vowel endings. Keep the rhythm steady and spend your extra attention on precise articulation.`,
+    focusChars.length
+      ? `The characters that need the most cleanup are ${focusChars.join('、')}. Practice them in isolation first, then put them back into the full sentence until they stop showing up as low-scoring matches.`
+      : `Your biggest opportunity now is consistency across repeated attempts. Re-record the same sentence until you can keep both the overall score and the detected text stable.`,
+    confidence < 75
+      ? `Recognition confidence is only ${confidence}%, which usually means the spoken sounds are not landing clearly enough yet. Slow down slightly, open each syllable fully, and make sure the final consonants are not getting swallowed.`
+      : `Recognition confidence is ${confidence}%, which means the app is hearing you fairly clearly. Keep stacking repetitions and push your overall score upward by tightening the weakest syllables instead of restarting from scratch.`,
+    recentTrend >= 5
+      ? `Your recent scores are trending up by ${recentTrend} points. Stay with the same difficulty for a bit longer so the improvement becomes repeatable before you move on.`
+      : `Your recent scores are fairly flat, so change one variable at a time: first tone shape, then pacing, then difficult initials. That makes it easier to identify what is actually improving your result.`
+  ];
+
+  bubbles.innerHTML = tips.slice(0, 3).map(text => `
+    <div class="coach-bubble" style="margin-bottom:1.5rem">
+      <div class="coach-text">${text}</div>
+    </div>
+  `).join('');
 
   btn.disabled = false;
   btn.textContent = '✨ Generate AI Analysis';
@@ -1914,19 +2359,128 @@ function practiceRetroflex() {
 // ============================================================
 // DASHBOARD CHARTS
 // ============================================================
-let chartsInitialized = false;
-function initDashboardCharts() {
-  if(chartsInitialized) return;
-  chartsInitialized = true;
+function formatBucketLabel(date, period) {
+  if(period === 'month') return `${date.getMonth() + 1}/${date.getDate()}`;
+  return date.toLocaleDateString('en-US', { weekday:'short' });
+}
 
-  // Accuracy trend
-  new Chart(document.getElementById('accuracyChart'), {
+function formatHistoryDate(date) {
+  const todayKey = getDateKey();
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  const dateKey = getDateKey(date);
+  if(dateKey === todayKey) return 'Today';
+  if(dateKey === getDateKey(yesterday)) return 'Yesterday';
+  return date.toLocaleDateString('en-US', { month:'short', day:'numeric' });
+}
+
+function buildDashboardData(period = state.dashboardPeriod) {
+  const sessions = getSessionsForPeriod(period);
+  let buckets = [];
+
+  if(period === 'all') {
+    const uniqueKeys = [...new Set(sessions.map(session => session.dateKey))].slice(-12);
+    buckets = uniqueKeys.map(key => {
+      const date = new Date(`${key}T00:00:00`);
+      return { key, label: `${date.getMonth() + 1}/${date.getDate()}` };
+    });
+  } else {
+    const days = period === 'month' ? 30 : 7;
+    const start = new Date();
+    start.setHours(0, 0, 0, 0);
+    start.setDate(start.getDate() - (days - 1));
+    for(let i = 0; i < days; i++) {
+      const date = new Date(start);
+      date.setDate(start.getDate() + i);
+      buckets.push({ key: getDateKey(date), label: formatBucketLabel(date, period) });
+    }
+  }
+
+  const grouped = sessions.reduce((acc, session) => {
+    if(!acc[session.dateKey]) acc[session.dateKey] = [];
+    acc[session.dateKey].push(session);
+    return acc;
+  }, {});
+
+  const labels = buckets.map(bucket => bucket.label);
+  const accuracy = buckets.map(bucket => {
+    const daySessions = grouped[bucket.key] || [];
+    return daySessions.length ? Math.round(average(daySessions.map(session => session.overall))) : 0;
+  });
+  const counts = buckets.map(bucket => (grouped[bucket.key] || []).length);
+
+  const aggregateSessions = sessions.length ? sessions : state.sessionHistory;
+  const pronunciation = aggregateSessions.length ? Math.round(average(aggregateSessions.map(session => session.pronunciation))) : 0;
+  const toneAccuracy = aggregateSessions.length ? Math.round(average(aggregateSessions.map(session => session.toneAccuracy))) : 0;
+  const fluency = aggregateSessions.length ? Math.round(average(aggregateSessions.map(session => session.fluency))) : 0;
+  const confidence = aggregateSessions.length ? Math.round(average(aggregateSessions.map(session => session.confidence))) : 0;
+
+  return {
+    labels,
+    accuracy,
+    counts,
+    radar: [
+      pronunciation,
+      clampScore(pronunciation + 5),
+      toneAccuracy,
+      fluency,
+      clampScore((fluency + toneAccuracy) / 2),
+      confidence,
+    ],
+    history: [...aggregateSessions].slice(-5).reverse(),
+  };
+}
+
+function renderSessionHistory(sessions) {
+  const hist = document.getElementById('sessionHistory');
+  if(!sessions.length) {
+    hist.innerHTML = '<div style="font-size:13px;color:var(--text2)">No saved sessions yet.</div>';
+    return;
+  }
+
+  hist.innerHTML = sessions.map(session => {
+    const date = new Date(session.createdAt);
+    const dateLabel = formatHistoryDate(date);
+    const timeLabel = date.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
+    const score = session.overall;
+    return `
+      <div style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;background:var(--bg3);border-radius:var(--r)">
+        <div style="width:40px;height:40px;border-radius:var(--r);background:${score>=80?'rgba(34,197,94,0.12)':score>=70?'rgba(45,212,191,0.12)':'rgba(245,158,11,0.12)'};display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:${score>=80?'var(--green)':score>=70?'var(--teal)':'var(--amber)'}">
+          ${score}
+        </div>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'Noto Serif SC',serif">${session.target}</div>
+          <div style="font-size:11px;color:var(--text2)">${dateLabel} · ${timeLabel}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function initDashboardCharts() {
+  const { labels, accuracy, counts, radar, history } = buildDashboardData(state.dashboardPeriod);
+  refreshDashboardSummary(state.dashboardPeriod);
+  renderSessionHistory(history);
+
+  if(state.charts.accuracy) {
+    state.charts.accuracy.data.labels = labels;
+    state.charts.accuracy.data.datasets[0].data = accuracy;
+    state.charts.accuracy.update();
+    state.charts.sessions.data.labels = labels;
+    state.charts.sessions.data.datasets[0].data = counts;
+    state.charts.sessions.update();
+    state.charts.sound.data.datasets[0].data = radar;
+    state.charts.sound.update();
+    return;
+  }
+
+  state.charts.accuracy = new Chart(document.getElementById('accuracyChart'), {
     type:'line',
     data:{
-      labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+      labels,
       datasets:[{
         label:'Accuracy %',
-        data:[68,71,70,74,73,76,76],
+        data:accuracy,
         borderColor:'#7c6af7',
         backgroundColor:'rgba(124,106,247,0.1)',
         fill:true,
@@ -1939,20 +2493,19 @@ function initDashboardCharts() {
       responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false}},
       scales:{
-        y:{min:50,max:100,grid:{color:'rgba(255,255,255,0.05)'},ticks:{color:'#9898b8',font:{size:11}}},
-        x:{grid:{display:false},ticks:{color:'#9898b8',font:{size:11}}}
+        y:{beginAtZero:true,max:100,grid:{color:'rgba(255,255,255,0.05)'},ticks:{color:'#9898b8',font:{size:11}}},
+        x:{grid:{display:false},ticks:{color:'#9898b8',font:{size:11},maxRotation:0}}
       }
     }
   });
 
-  // Sessions per day
-  new Chart(document.getElementById('sessionsChart'), {
+  state.charts.sessions = new Chart(document.getElementById('sessionsChart'), {
     type:'bar',
     data:{
-      labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+      labels,
       datasets:[{
         label:'Sessions',
-        data:[2,3,1,4,2,5,3],
+        data:counts,
         backgroundColor:'rgba(45,212,191,0.25)',
         borderColor:'#2dd4bf',
         borderWidth:2,
@@ -1963,19 +2516,18 @@ function initDashboardCharts() {
       responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false}},
       scales:{
-        y:{beginAtZero:true,grid:{color:'rgba(255,255,255,0.05)'},ticks:{color:'#9898b8',font:{size:11}}},
-        x:{grid:{display:false},ticks:{color:'#9898b8',font:{size:11}}}
+        y:{beginAtZero:true,grid:{color:'rgba(255,255,255,0.05)'},ticks:{color:'#9898b8',font:{size:11},precision:0}},
+        x:{grid:{display:false},ticks:{color:'#9898b8',font:{size:11},maxRotation:0}}
       }
     }
   });
 
-  // Sound radar
-  new Chart(document.getElementById('soundChart'), {
+  state.charts.sound = new Chart(document.getElementById('soundChart'), {
     type:'radar',
     data:{
       labels:['Initials','Finals','Tones','Fluency','Rhythm','Clarity'],
       datasets:[
-        {label:'Current',data:[68,78,71,83,74,76],backgroundColor:'rgba(124,106,247,0.15)',borderColor:'#7c6af7',pointBackgroundColor:'#7c6af7',pointRadius:4},
+        {label:'Current',data:radar,backgroundColor:'rgba(124,106,247,0.15)',borderColor:'#7c6af7',pointBackgroundColor:'#7c6af7',pointRadius:4},
         {label:'Target',data:[90,90,90,90,90,90],backgroundColor:'transparent',borderColor:'rgba(255,255,255,0.15)',borderDash:[4,4],pointRadius:0},
       ]
     },
@@ -1993,46 +2545,41 @@ function initDashboardCharts() {
       }
     }
   });
-
-  // Session history
-  const history = [
-    {date:'Today',time:'10:32 AM',score:76,text:'你好，我很高兴认识你。'},
-    {date:'Today',time:'9:15 AM',score:82,text:'请再说一遍。'},
-    {date:'Yesterday',time:'8:00 PM',score:71,text:'我听不懂。'},
-    {date:'Yesterday',time:'3:30 PM',score:68,text:'谢谢你的帮助。'},
-    {date:'Monday',time:'7:45 PM',score:74,text:'今天天气很好。'},
-  ];
-  const hist = document.getElementById('sessionHistory');
-  hist.innerHTML = history.map(h => `
-    <div style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;background:var(--bg3);border-radius:var(--r)">
-      <div style="width:40px;height:40px;border-radius:var(--r);background:${h.score>=80?'rgba(34,197,94,0.12)':h.score>=70?'rgba(45,212,191,0.12)':'rgba(245,158,11,0.12)'};display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:${h.score>=80?'var(--green)':h.score>=70?'var(--teal)':'var(--amber)'}">
-        ${h.score}
-      </div>
-      <div style="flex:1;min-width:0">
-        <div style="font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'Noto Serif SC',serif">${h.text}</div>
-        <div style="font-size:11px;color:var(--text2)">${h.date} · ${h.time}</div>
-      </div>
-    </div>
-  `).join('');
 }
 
-function updateDashboard(period) {}
+function updateDashboard(period) {
+  state.dashboardPeriod = period || state.dashboardPeriod;
+  const select = document.getElementById('dashboardPeriodSelect');
+  if(select) select.value = state.dashboardPeriod;
+  persistState();
+  initDashboardCharts();
+}
 
 // ============================================================
 // ACHIEVEMENTS
 // ============================================================
 function renderAchievements(filter) {
   const grid = document.getElementById('achievementsGrid');
-  let items = ACHIEVEMENTS;
-  if(filter === 'unlocked') items = items.filter(a => a.unlocked);
-  if(filter === 'locked') items = items.filter(a => !a.unlocked);
-  grid.innerHTML = items.map(a => `
-    <div class="achievement ${a.unlocked?'unlocked':''} ${a.unlocked?'':'ach-locked'}">
-      <div class="ach-icon">${a.emoji}</div>
+  const items = ACHIEVEMENTS.map(achievement => ({
+    ...achievement,
+    unlocked: Boolean(state.unlockedAchievements[achievement.id]),
+  }));
+  const filtered = filter === 'unlocked'
+    ? items.filter(item => item.unlocked)
+    : filter === 'locked'
+      ? items.filter(item => !item.unlocked)
+      : items;
+
+  const unlockedCount = items.filter(item => item.unlocked).length;
+  document.getElementById('achievementsSummary').textContent = `🏆 ${unlockedCount} / ${items.length} earned`;
+
+  grid.innerHTML = filtered.map(item => `
+    <div class="achievement ${item.unlocked?'unlocked':''} ${item.unlocked?'':'ach-locked'}">
+      <div class="ach-icon">${item.emoji}</div>
       <div>
-        <div class="ach-name">${a.name}</div>
-        <div class="ach-desc">${a.desc}</div>
-        ${a.unlocked ? '<div style="font-size:11px;color:var(--amber2);margin-top:4px">✓ Unlocked</div>' : ''}
+        <div class="ach-name">${item.name}</div>
+        <div class="ach-desc">${item.desc}</div>
+        ${item.unlocked ? '<div style="font-size:11px;color:var(--amber2);margin-top:4px">✓ Unlocked</div>' : ''}
       </div>
     </div>
   `).join('');
@@ -2048,16 +2595,14 @@ function filterAch(type, el) {
 // INIT
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
+  hydrateStateFromStorage();
   updateDisplay();
   renderTonePairs();
-  // Pre-init char breakdown
-  const cb = document.getElementById('charBreakdown');
-  cb.innerHTML = state.currentText.replace(/[，。？！、；：]/g,'').split('').map(c =>
-    `<div class="char-item" onclick="playCharacter('${c}')">
-      <div class="char-zh">${c}</div>
-      <div class="char-py">${getPinyinForChar(c)||'?'}</div>
-    </div>`
-  ).join('');
+  renderLessons();
+  renderAchievements();
+  updateWeakAreas();
+  refreshDashboardSummary(state.dashboardPeriod);
+  document.getElementById('dashboardPeriodSelect').value = state.dashboardPeriod;
 });
 
 // Load voices
